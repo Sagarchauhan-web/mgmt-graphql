@@ -1,17 +1,28 @@
-import { gql, useQuery } from '@apollo/client';
-import { Table, Card } from 'antd';
+import { useQuery } from '@apollo/client';
+import { Table, Card, Spin } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
+import { GET_CLIENTS } from '../query/clientQuery';
+import { useMutation } from '@apollo/client';
+import { DELETE_CLIENTS } from '../mutations/clientMutations';
 
-const GET_CLIENTS = gql`
-  query getClients {
-    clients {
-      id
-      name
-      email
-      phone
-    }
-  }
-`;
+const DeleteItem = ({ client }) => {
+  const [deleteClient] = useMutation(DELETE_CLIENTS, {
+    variables: { id: client.id },
+    // refetchQueries: [{ query: GET_CLIENTS }],
+    update(cache, { data: { deleteClient } }) {
+      const { clients } = cache.readQuery({ query: GET_CLIENTS });
+
+      cache.writeQuery({
+        query: GET_CLIENTS,
+        data: {
+          clients: clients.filter((client) => client.id !== deleteClient.id),
+        },
+      });
+    },
+  });
+
+  return <DeleteOutlined onClick={deleteClient} style={{ color: 'red' }} />;
+};
 
 const Clients = () => {
   const { loading, error, data } = useQuery(GET_CLIENTS);
@@ -35,13 +46,11 @@ const Clients = () => {
     {
       title: 'Delete',
       key: 'phone',
-      render: () => {
-        return <DeleteOutlined style={{ color: 'red' }} />;
-      },
+      render: (item) => <DeleteItem client={item} />,
     },
   ];
 
-  if (loading) return <p>Loading</p>;
+  if (loading) return <Spin />;
   if (error) return <p>Something went wrong</p>;
 
   return (

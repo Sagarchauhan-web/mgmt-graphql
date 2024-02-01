@@ -15,12 +15,12 @@ const Projects = () => {
   if (error) return <p>Something went wrong</p>;
 
   return (
-    <Row>
+    <Row gutter={{ lg: 10 }}>
       {data.projects.map((project) => (
         <Col span={screens['xs'] ? 24 : 12} gutter={[16, 24]}>
           <Card
             style={{
-              margin: '2rem',
+              marginBottom: '2rem',
             }}
           >
             <div

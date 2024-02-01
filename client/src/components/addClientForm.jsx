@@ -37,6 +37,11 @@ const AddClientForm = ({ closeModal }) => {
   };
 
   const onSubmit = async (props) => {
+    if (!name || !email || !phone) {
+      return notification.error({
+        message: 'Please fill in the all the required fields',
+      });
+    }
     await addClient();
     notification.success({
       message: 'Client added successfully',

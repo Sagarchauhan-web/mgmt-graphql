@@ -6,21 +6,22 @@ import Loader from '../Pages/Loader';
 import { DELETE_CLIENTS } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../query/clientQuery';
 import AddClientForm from './AddClientForm';
+import { GET_PROJECTS } from '../query/projectQuery';
 
 const DeleteItem = ({ client }) => {
   const [deleteClient] = useMutation(DELETE_CLIENTS, {
     variables: { id: client.id },
-    // refetchQueries: [{ query: GET_CLIENTS }],
-    update(cache, { data: { deleteClient } }) {
-      const { clients } = cache.readQuery({ query: GET_CLIENTS });
+    refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
+    // update(cache, { data: { deleteClient } }) {
+    //   const { clients } = cache.readQuery({ query: GET_CLIENTS });
 
-      cache.writeQuery({
-        query: GET_CLIENTS,
-        data: {
-          clients: clients.filter((client) => client.id !== deleteClient.id),
-        },
-      });
-    },
+    //   cache.writeQuery({
+    //     query: GET_CLIENTS,
+    //     data: {
+    //       clients: clients.filter((client) => client.id !== deleteClient.id),
+    //     },
+    //   });
+    // },
   });
 
   return <DeleteOutlined onClick={deleteClient} style={{ color: 'red' }} />;

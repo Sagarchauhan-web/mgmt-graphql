@@ -1,12 +1,11 @@
-import React from 'react';
-import { Spin, Card, Button, Tag, List, Table } from 'antd';
-import { Link, useParams } from 'react-router-dom';
-import { useMutation, useQuery } from '@apollo/client';
-import { GET_PROJECT, GET_PROJECTS } from '../query/projectQuery';
-import { useNavigate } from 'react-router-dom';
 import { ArrowLeftOutlined, DeleteOutlined } from '@ant-design/icons';
-import Loader from './Loader';
+import { useMutation, useQuery } from '@apollo/client';
+import { Button, Card, Table, Tag } from 'antd';
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { DELETE_PROJECT } from '../mutations/projectMutaions';
+import { GET_PROJECT, GET_PROJECTS } from '../query/projectQuery';
+import Loader from './Loader';
 
 const Project = () => {
   let navigate = useNavigate();
@@ -16,17 +15,8 @@ const Project = () => {
   });
   const [deleteProject] = useMutation(DELETE_PROJECT, {
     variables: { id: id },
+    onCompleted: () => navigate('/'),
     refetchQueries: [{ query: GET_PROJECTS }],
-    // update(cache, { data: { deleteProject } }) {
-    //   const { projects } = cache.readQuery({ query: GET_PROJECTS });
-
-    //   cache.writeQuery({
-    //     key: GET_PROJECTS,
-    //     data: {
-    //       projects: projects.filter((item) => item.id !== deleteProject.id),
-    //     },
-    //   });
-    // },
   });
 
   if (loading) return <Loader />;
@@ -52,7 +42,6 @@ const Project = () => {
 
   const deleteProjectCall = async () => {
     await deleteProject();
-    navigate('/');
   };
 
   return (

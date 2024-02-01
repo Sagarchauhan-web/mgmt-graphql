@@ -28,7 +28,6 @@ const DeleteItem = ({ client }) => {
 
 const Clients = () => {
   const [addClientModal, setAddClientModal] = useState(false);
-  const [addClientLoader, setAddClientLoader] = useState(false);
 
   const { loading, error, data } = useQuery(GET_CLIENTS);
 
@@ -50,22 +49,10 @@ const Clients = () => {
     },
     {
       title: 'Delete',
-      key: 'phone',
+      key: 'button',
       render: (item) => <DeleteItem client={item} />,
     },
   ];
-
-  const handleOk = () => {
-    setAddClientLoader(true);
-    setTimeout(() => {
-      setAddClientLoader(false);
-      setAddClientModal(false);
-    }, 3000);
-  };
-
-  const handleCancel = () => {
-    setAddClientModal(false);
-  };
 
   if (loading) return <Spin />;
   if (error) return <p>Something went wrong</p>;
@@ -81,28 +68,10 @@ const Clients = () => {
         <FileAddOutlined /> Add Client
       </Button>
 
-      <Table dataSource={data.clients} columns={columns} />
+      <Table rowKey={'id'} dataSource={data.clients} columns={columns} />
 
-      <Modal
-        open={addClientModal}
-        title='Add Client'
-        onOk={handleOk}
-        onCancel={handleCancel}
-        // footer={[
-        //   <Button key='back' onClick={handleCancel}>
-        //     Return
-        //   </Button>,
-        //   <Button
-        //     key='submit'
-        //     type='primary'
-        //     loading={loading}
-        //     onClick={handleOk}
-        //   >
-        //     Submit
-        //   </Button>,
-        // ]}
-      >
-        <AddClientForm />
+      <Modal open={addClientModal} title='Add Client' footer={false}>
+        <AddClientForm closeModal={() => setAddClientModal(false)} />
       </Modal>
     </Card>
   );

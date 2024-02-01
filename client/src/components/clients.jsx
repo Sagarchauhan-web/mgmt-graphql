@@ -1,11 +1,11 @@
 import { DeleteOutlined, FileAddOutlined } from '@ant-design/icons';
 import { useMutation, useQuery } from '@apollo/client';
-import { Button, Card, Modal, Spin, Table } from 'antd';
+import { Button, Card, Modal, Table, Divider } from 'antd';
 import { useState } from 'react';
+import Loader from '../Pages/Loader';
 import { DELETE_CLIENTS } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../query/clientQuery';
-import AddClientForm from './addClientForm';
-import Loader from '../Pages/Loader';
+import AddClientForm from './AddClientForm';
 
 const DeleteItem = ({ client }) => {
   const [deleteClient] = useMutation(DELETE_CLIENTS, {
@@ -70,7 +70,13 @@ const Clients = () => {
 
       <Table rowKey={'id'} dataSource={data.clients} columns={columns} />
 
-      <Modal open={addClientModal} title='Add Client' footer={false}>
+      <Modal
+        open={addClientModal}
+        title='Add Client'
+        footer={false}
+        onCancel={() => setAddClientModal(false)}
+      >
+        <Divider />
         <AddClientForm closeModal={() => setAddClientModal(false)} />
       </Modal>
     </Card>

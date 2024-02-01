@@ -17,7 +17,7 @@ const AddProjectForm = ({ closeModal }) => {
     variables: { name, description, status, clientId },
     update(cache, { data: { addProject } }) {
       const { projects } = cache.readQuery({ query: GET_PROJECTS });
-      console.log(cache.readQuery({ query: GET_PROJECTS }), 'here');
+
       cache.writeQuery({
         query: GET_PROJECTS,
         data: {

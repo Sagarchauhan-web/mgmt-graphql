@@ -13,7 +13,6 @@ const AddClientForm = ({ closeModal }) => {
     variables: { name, email, phone },
     update(cache, { data: { addClient } }) {
       const { clients } = cache.readQuery({ query: GET_CLIENTS });
-      console.log(addClient);
 
       cache.writeQuery({
         query: GET_CLIENTS,

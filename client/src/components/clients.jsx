@@ -1,10 +1,9 @@
-import { useQuery } from '@apollo/client';
-import { Table, Card, Spin, Button, Modal } from 'antd';
 import { DeleteOutlined, FileAddOutlined } from '@ant-design/icons';
-import { GET_CLIENTS } from '../query/clientQuery';
-import { useMutation } from '@apollo/client';
-import { DELETE_CLIENTS } from '../mutations/clientMutations';
+import { useMutation, useQuery } from '@apollo/client';
+import { Button, Card, Modal, Spin, Table } from 'antd';
 import { useState } from 'react';
+import { DELETE_CLIENTS } from '../mutations/clientMutations';
+import { GET_CLIENTS } from '../query/clientQuery';
 import AddClientForm from './addClientForm';
 
 const DeleteItem = ({ client }) => {

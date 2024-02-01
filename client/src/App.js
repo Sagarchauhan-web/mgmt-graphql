@@ -3,6 +3,7 @@ import { ConfigProvider } from 'antd';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './Pages/Home';
 import NotFound from './Pages/NotFound';
+import Project from './Pages/Project';
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -36,6 +37,7 @@ function App() {
           <div className='App'>
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/project/:id' element={<Project />} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </div>

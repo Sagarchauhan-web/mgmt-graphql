@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { DELETE_CLIENTS } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../query/clientQuery';
 import AddClientForm from './addClientForm';
+import Loader from '../Pages/Loader';
 
 const DeleteItem = ({ client }) => {
   const [deleteClient] = useMutation(DELETE_CLIENTS, {
@@ -53,7 +54,7 @@ const Clients = () => {
     },
   ];
 
-  if (loading) return <Spin />;
+  if (loading) return <Loader />;
   if (error) return <p>Something went wrong</p>;
 
   return (

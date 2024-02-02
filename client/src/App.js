@@ -37,7 +37,7 @@ function App() {
     <div className='App' style={{ minHeight: '100vh' }}>
       <ApolloProvider client={client}>
         <Router>
-          <ConfigProvider>
+          <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>
             <Container>
               <Routes>
                 <Route path='/' element={<Home />} />

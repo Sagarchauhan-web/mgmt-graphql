@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Button, Card, Col, Grid, Row, Tag, Modal, Divider } from 'antd';
 import { GET_PROJECTS } from '../query/projectQuery';
 import { useNavigate } from 'react-router-dom';
-import Loader from '../Pages/Loader';
+import Loader from '../pages/Loader';
 import { FileAddOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import AddProjectForm from './AddProjectForm';

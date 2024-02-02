@@ -3,7 +3,7 @@ import { Button, Form, Input, notification, Select } from 'antd';
 import { ADD_PROJECT } from '../mutations/projectMutaions';
 import { useState } from 'react';
 import { GET_CLIENTS } from '../query/clientQuery';
-import Loader from '../Pages/Loader';
+import Loader from '../pages/Loader';
 import { GET_PROJECT, GET_PROJECTS } from '../query/projectQuery';
 
 const AddProjectForm = ({ closeModal }) => {

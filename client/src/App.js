@@ -1,11 +1,11 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import { ConfigProvider } from 'antd';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import ClientsList from './Pages/ClientsList';
-import Home from './Pages/Home';
-import NotFound from './Pages/NotFound';
-import ProjectDetails from './Pages/ProjectDetails';
-import ProjectsList from './Pages/ProjectsList';
+import ClientsList from './pages/ClientsList';
+import Home from './pages/Home';
+import NotFound from './pages/NotFound';
+import ProjectDetails from './pages/ProjectDetails';
+import ProjectsList from './pages/ProjectsList';
 import Container from './Sidebar';
 
 const cache = new InMemoryCache({

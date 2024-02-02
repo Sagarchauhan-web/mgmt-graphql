@@ -2,7 +2,7 @@ import { DeleteOutlined, FileAddOutlined } from '@ant-design/icons';
 import { useMutation, useQuery } from '@apollo/client';
 import { Button, Card, Modal, Table, Divider, notification, Spin } from 'antd';
 import { useState } from 'react';
-import Loader from '../pages/Loader';
+import Loader from '../Pages/Loader';
 import { DELETE_CLIENTS } from '../mutations/clientMutations';
 import { GET_CLIENTS } from '../query/clientQuery';
 import AddClientForm from './AddClientForm';

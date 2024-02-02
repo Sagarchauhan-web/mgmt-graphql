@@ -66,6 +66,9 @@ const ProjectDetails = () => {
         <Tag style={{ marginTop: '2rem' }}>Status: {data.project.status}</Tag>
         <h2 style={{ marginTop: '2rem' }}>Personal Info</h2>
         <Table
+          scroll={{
+            x: 700,
+          }}
           rowKey={'id'}
           pagination={false}
           dataSource={[data.project.client]}

@@ -67,7 +67,14 @@ const Clients = () => {
         <FileAddOutlined /> Add Client
       </Button>
 
-      <Table rowKey={'id'} dataSource={data.clients} columns={columns} />
+      <Table
+        rowKey={'id'}
+        scroll={{
+          x: 700,
+        }}
+        dataSource={data.clients}
+        columns={columns}
+      />
 
       <Modal
         open={addClientModal}

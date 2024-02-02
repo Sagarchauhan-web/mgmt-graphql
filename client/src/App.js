@@ -1,5 +1,5 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
-import { ConfigProvider } from 'antd';
+import { ConfigProvider, theme } from 'antd';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import ClientsList from './Pages/ClientsList';
 import Home from './Pages/Home';
@@ -37,7 +37,7 @@ function App() {
     <div className='App' style={{ minHeight: '100vh' }}>
       <ApolloProvider client={client}>
         <Router>
-          <ConfigProvider theme={{ token: { colorPrimary: '#00b96b' } }}>
+          <ConfigProvider>
             <Container>
               <Routes>
                 <Route path='/' element={<Home />} />

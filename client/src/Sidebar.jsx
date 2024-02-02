@@ -8,6 +8,7 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import Graphql from './assets/graphql.png';
 const { Header, Sider, Content } = Layout;
 
 const Container = ({ children }) => {
@@ -47,7 +48,9 @@ const Container = ({ children }) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className='demo-logo-vertical' />
+        <div className='demo-logo-vertical'>
+          <img src={Graphql} alt='graphql' />
+        </div>
         <Menu
           theme='dark'
           mode='inline'

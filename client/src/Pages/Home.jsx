@@ -4,14 +4,13 @@ import Projects from '../components/Projects';
 
 const Home = () => {
   return (
-    <div
+    <h1
       style={{
         margin: '2rem',
       }}
     >
-      <Projects />
-      <Clients />
-    </div>
+      Home Page
+    </h1>
   );
 };
 

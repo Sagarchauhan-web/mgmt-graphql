@@ -7,7 +7,7 @@ import { DELETE_PROJECT } from '../mutations/projectMutaions';
 import { GET_PROJECT, GET_PROJECTS } from '../query/projectQuery';
 import Loader from './Loader';
 
-const Project = () => {
+const ProjectDetails = () => {
   let navigate = useNavigate();
   const { id } = useParams();
   const { loading, error, data } = useQuery(GET_PROJECT, {
@@ -45,7 +45,7 @@ const Project = () => {
   };
 
   return (
-    <Card style={{ margin: '2rem' }}>
+    <Card>
       <div>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <Button onClick={() => navigate('/')}>
@@ -76,4 +76,4 @@ const Project = () => {
   );
 };
 
-export default Project;
+export default ProjectDetails;

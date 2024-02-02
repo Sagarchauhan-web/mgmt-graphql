@@ -100,7 +100,7 @@ const mutation = new GraphQLObjectType({
           );
 
           await Promise.all(promises);
-          return Client.findByIdAndDelete(args.id);
+          return await Client.findByIdAndDelete(args.id);
         });
       },
     },

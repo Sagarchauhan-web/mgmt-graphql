@@ -1,6 +1,6 @@
 import { DeleteOutlined, FileAddOutlined } from '@ant-design/icons';
 import { useMutation, useQuery } from '@apollo/client';
-import { Button, Card, Modal, Table, Divider } from 'antd';
+import { Button, Card, Modal, Table, Divider, notification, Spin } from 'antd';
 import { useState } from 'react';
 import Loader from '../Pages/Loader';
 import { DELETE_CLIENTS } from '../mutations/clientMutations';
@@ -8,29 +8,27 @@ import { GET_CLIENTS } from '../query/clientQuery';
 import AddClientForm from './AddClientForm';
 import { GET_PROJECTS } from '../query/projectQuery';
 
-const DeleteItem = ({ client }) => {
-  const [deleteClient] = useMutation(DELETE_CLIENTS, {
+const DeleteItem = ({ client, refetch }) => {
+  const [deleteClient, { loading }] = useMutation(DELETE_CLIENTS, {
     variables: { id: client.id },
+    onCompleted: () => {
+      notification.success({ message: 'Client deleted successfully' });
+      refetch();
+    },
     refetchQueries: [{ query: GET_CLIENTS }, { query: GET_PROJECTS }],
-    // update(cache, { data: { deleteClient } }) {
-    //   const { clients } = cache.readQuery({ query: GET_CLIENTS });
-
-    //   cache.writeQuery({
-    //     query: GET_CLIENTS,
-    //     data: {
-    //       clients: clients.filter((client) => client.id !== deleteClient.id),
-    //     },
-    //   });
-    // },
   });
 
-  return <DeleteOutlined onClick={deleteClient} style={{ color: 'red' }} />;
+  return (
+    <Button onClick={deleteClient} style={{ backgroundColor: 'red' }}>
+      {loading ? <Spin /> : <DeleteOutlined style={{ color: 'white' }} />}
+    </Button>
+  );
 };
 
 const Clients = () => {
   const [addClientModal, setAddClientModal] = useState(false);
 
-  const { loading, error, data } = useQuery(GET_CLIENTS);
+  const { loading, error, data, refetch } = useQuery(GET_CLIENTS);
 
   const columns = [
     {
@@ -51,7 +49,7 @@ const Clients = () => {
     {
       title: 'Delete',
       key: 'button',
-      render: (item) => <DeleteItem client={item} />,
+      render: (item) => <DeleteItem client={item} refetch={refetch} />,
     },
   ];
 

@@ -15,7 +15,7 @@ const ProjectDetails = () => {
   });
   const [deleteProject] = useMutation(DELETE_PROJECT, {
     variables: { id: id },
-    onCompleted: () => navigate('/'),
+    onCompleted: () => navigate('/projects'),
     refetchQueries: [{ query: GET_PROJECTS }],
   });
 

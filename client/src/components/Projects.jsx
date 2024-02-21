@@ -1,11 +1,11 @@
-import { useQuery } from '@apollo/client';
-import { Button, Card, Col, Grid, Row, Tag, Modal, Divider } from 'antd';
-import { GET_PROJECTS } from '../query/projectQuery';
-import { useNavigate } from 'react-router-dom';
-import Loader from '../Pages/Loader';
-import { FileAddOutlined } from '@ant-design/icons';
-import { useState } from 'react';
-import AddProjectForm from './AddProjectForm';
+import { useQuery } from "@apollo/client";
+import { Button, Card, Col, Grid, Row, Tag, Modal, Divider } from "antd";
+import { GET_PROJECTS } from "../query/projectQuery";
+import { useNavigate } from "react-router-dom";
+import Loader from "../Pages/Loader";
+import { FileAddOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import AddProjectForm from "./AddProjectForm";
 
 const { useBreakpoint } = Grid;
 
@@ -19,32 +19,32 @@ const Projects = () => {
   if (error) return <p>Something went wrong</p>;
 
   return (
-    <Card style={{ marginBottom: '10px' }}>
+    <Card style={{ marginBottom: "10px" }}>
       <Button
-        type='primary'
+        type="primary"
         onClick={() => setAddProjectModal(!addProjectModal)}
-        style={{ marginBottom: '10px' }}
+        style={{ marginBottom: "10px" }}
       >
         <FileAddOutlined /> Add Project
       </Button>
 
       <Row gutter={{ lg: 10, sm: 10, xs: 10 }}>
         {data.projects.map((project) => (
-          <Col span={screens['xs'] ? 24 : 12} gutter={[16, 24]}>
+          <Col span={screens["xs"] ? 24 : 12} gutter={[16, 24]}>
             <Card
               style={{
-                marginBottom: '2rem',
+                marginBottom: "4rem",
               }}
             >
               <div
                 style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'space-between',
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "space-between",
                 }}
               >
                 <div>
-                  <h4 style={{ padding: '.1rem', textTransform: 'capitalize' }}>
+                  <h4 style={{ padding: ".1rem", textTransform: "capitalize" }}>
                     {project.name}
                   </h4>
                   <Tag>{project.status}</Tag>
@@ -60,7 +60,7 @@ const Projects = () => {
 
       <Modal
         open={addProjectModal}
-        title='Add Project'
+        title="Add Project"
         footer={false}
         onCancel={() => setAddProjectModal(false)}
       >
